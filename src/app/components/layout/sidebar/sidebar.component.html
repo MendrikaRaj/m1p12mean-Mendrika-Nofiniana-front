@@ -1,0 +1,40 @@
+<nav id="sidebar" style="background-color: black; height: 100%;" >
+  <a
+    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+    href="#"
+  >
+    <div class="sidebar-brand-icon">
+      <p></p>
+    </div>
+  </a>
+  <div class="p-4 pt-5">
+    <ul class="list-unstyled components mb-5">
+      <li>
+        <a class="nav-link" href="#"
+          ><i class="fa fa-home"></i><span> Tableau de bord</span>
+        </a>
+      </li>
+      <!-- TODO : Ajoute la class active quand l'url est celui du lien-->
+      <li>
+        <a
+          href="#congeSubmenu"
+          data-toggle="collapse"
+          aria-expanded="false"
+          class="dropdown-toggle"
+          ><i class="fas fa-suitcase"></i> Congé</a
+        >
+        <ul class="collapse list-unstyled" id="congeSubmenu">
+          <li>
+            <a href="#">Solde de congé des employés</a>
+          </li>
+          <li>
+            <a href="#">Liste congé</a>
+          </li>
+          <li>
+            <a href="#">Etat congé</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
