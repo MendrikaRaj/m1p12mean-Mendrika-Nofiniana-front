@@ -29,6 +29,10 @@ export const routes: Routes = [
         component: ListAppointmentManagerComponent,
       },
       {
+        path: 'list-service-manager',
+        component: ListServiceManagerComponent,
+      },
+      {
         path: 'create-service-appointment',
         component: CreateServiceAppointmentComponent,
       },

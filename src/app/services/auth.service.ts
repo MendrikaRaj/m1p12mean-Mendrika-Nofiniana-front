@@ -5,20 +5,26 @@ import { tap } from 'rxjs/operators'; // Import tap for side effects
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(mail: string, mdp: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/user/connexion`, { mail, mdp }, { withCredentials: true }).pipe(
-      tap((response: any) => {
-        // Store user data in localStorage or sessionStorage
-        localStorage.setItem('user', JSON.stringify(response));
-      })
-    );
+    return this.http
+      .post(
+        `${this.apiUrl}/user/connexion`,
+        { mail, mdp },
+        { withCredentials: true }
+      )
+      .pipe(
+        tap((response: any) => {
+          // Store user data in localStorage or sessionStorage
+          localStorage.setItem('user', JSON.stringify(response));
+        })
+      );
   }
   getUserById(id: string): Observable<any> {
     if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -32,8 +38,11 @@ export class AuthService {
   }
   // Method to retrieve the user from storage
   getUser(): any {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : null;
+    }
+    return null;
   }
 
   // Method to clear the session
