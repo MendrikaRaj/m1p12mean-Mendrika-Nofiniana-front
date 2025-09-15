@@ -7,7 +7,7 @@
           <thead>
             <tr>
               <th>Vehicule</th>
-              <th>mecanicien</th>
+              <th>client</th>
               <th>Description</th>
               <th>Status</th>
               <th></th>
@@ -16,17 +16,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Clio</td>
-              <td>Jean Dupont</td>
-              <td>Réparation moteur</td>
-              <td>En cours</td>
-            </tr>
-            <tr>
-              <td>Peugeot 208</td>
-              <td>Marie Curie</td>
-              <td>Changement de pneus</td>
-              <td>Terminé</td>
+            <tr *ngFor="let service of services">
+              <td>{{ service.vehicule }}</td>
+              <td>{{ service.client_id.nom+' '+service.client_id.prenom }}</td>
+              <td>{{ service.description }}</td>
+              <td
+                [ngStyle]="{ color: service.status === 'en cours' ? 'blue' : service.status === 'terminer' ? 'green' : 'red' }">
+                {{ service.status }}</td>
+              <td *ngIf="service.status === 'en cours'">
+                <button class="btn btn-success btn-sm" (click)="updateStatus(service._id, 'terminer')">Terminer</button>
+                <button class="btn btn-danger btn-sm" (click)="updateStatus(service._id, 'annuler')">Annuler</button>
+              </td>
+              <td *ngIf="service.status !== 'en cours'"></td>
             </tr>
           </tbody>
         </table>

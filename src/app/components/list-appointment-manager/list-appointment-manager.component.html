@@ -11,7 +11,7 @@
               <th>detail</th>
               <th>Numero</th>
               <th>Status</th>
-              <th></th>
+              <th>Service</th>
               <th></th>
               <th></th>
             </tr>
@@ -27,8 +27,13 @@
                 {{ appointment.status }}
               </td>
               <td *ngIf="appointment.status === 'confirmée'">
-                <button class="btn btn-primary btn-sm" (click)="goToCreateService(appointment._id)">Créer un
-                  service</button>
+                <ng-container *ngIf="appointment.existsInServiceAuto; else createServiceBtn">
+                  <span class="text-success">service créé</span>
+                </ng-container>
+                <ng-template #createServiceBtn>
+                  <button class="btn btn-primary btn-sm" (click)="goToCreateService(appointment._id)">Créer un
+                    service</button>
+                </ng-template>
               </td>
               <td *ngIf="appointment.status !== 'confirmée' && appointment.status !== 'annulée'">
                 <button class="btn btn-success btn-sm"

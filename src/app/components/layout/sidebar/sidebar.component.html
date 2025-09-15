@@ -23,19 +23,19 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="userRole === 'admin'">
+      <!-- <li *ngIf="userRole === 'admin'">
         <a class="nav-link" [routerLink]="['/create-mecanicien']"><span>Ajout d'un nouveau mécanicien</span>
         </a>
-      </li>
+      </li> -->
       <li *ngIf="userRole === 'admin'">
         <a class="nav-link" [routerLink]="['/list-appointment-manager']"><span>Liste des demandes de rendez-vous</span>
         </a>
       </li>
       <li *ngIf="userRole === 'admin'">
-        <a class="nav-link" href="#"><span>Liste des services</span>
+        <a class="nav-link" [routerLink]="['/list-service-manager']"><span>Liste des services</span>
         </a>
       </li>
-      <li *ngIf="userRole === 'admin'">
+      <!-- <li *ngIf="userRole === 'admin'">
         <a class="nav-link" href="#"><span>Facturation</span>
         </a>
       </li>
@@ -46,7 +46,7 @@
       <li *ngIf="userRole === 'mecanicien'">
         <a class="nav-link" href="#"><span>Mes taches</span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </nav>
