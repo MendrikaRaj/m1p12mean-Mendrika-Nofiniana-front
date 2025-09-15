@@ -1,0 +1,61 @@
+<form (ngSubmit)="createService()" style="border-radius: 34px" enctype="multipart/form-data">
+  <h2 class="text-center">Créer un service</h2>
+
+  <div class="form-group">
+    <label for="vehicule">Véhicule</label>
+    <input class="form-control" type="text" id="vehicule" name="vehicule" [(ngModel)]="serviceData.vehicule" required />
+  </div>
+
+  <div class="form-group">
+    <label for="date_debut_service">Date de début du service</label>
+    <input class="form-control" type="date" id="date_debut_service" name="date_debut_service"
+      [(ngModel)]="serviceData.date_debut_service" required />
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" [(ngModel)]="serviceData.description"
+      required></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="prix_main_oeuvre">Prix de la main d'œuvre</label>
+    <input class="form-control" type="number" id="prix_main_oeuvre" name="prix_main_oeuvre"
+      [(ngModel)]="serviceData.prix_main_oeuvre" required />
+  </div>
+
+  <div class="form-group">
+    <label for="frais_consultation">Frais de consultation</label>
+    <input class="form-control" type="number" id="frais_consultation" name="frais_consultation"
+      [(ngModel)]="serviceData.frais_consultation" required />
+  </div>
+
+  <div class="form-group">
+    <label for="frais_deplacement">Frais de déplacement</label>
+    <input class="form-control" type="number" id="frais_deplacement" name="frais_deplacement"
+      [(ngModel)]="serviceData.frais_deplacement" required />
+  </div>
+
+  <div class="form-group">
+    <label for="status">Statut</label>
+    <select class="form-control" id="status" name="status" [(ngModel)]="serviceData.status" required>
+      <option value="en cours">En cours</option>
+      <option value="terminé">Terminé</option>
+      <option value="annulé">Annulé</option>
+    </select>
+  </div>
+
+  <div class="form-group" style="text-align: center">
+    <button class="btn btn-primary" type="submit">Créer le service</button>
+  </div>
+</form>
+
+<!-- Right side: Details -->
+<div style="flex: 1; padding: 20px; background: #f8f9fa; border-left: 1px solid #ddd;">
+  <h3>Fiche de rendez-vous</h3>
+  <p><strong>ID:</strong> {{ appointmentDetails?._id }}</p>
+  <p><strong>Client ID:</strong> {{ appointmentDetails?.client_id }}</p>
+  <p><strong>Date:</strong> {{ appointmentDetails?.date | date: 'EEEE dd MMMM yyyy' }}</p>
+  <p><strong>Status:</strong> {{ appointmentDetails?.status }}</p>
+  <p><strong>Details:</strong> {{ appointmentDetails?.details }}</p>
+</div>

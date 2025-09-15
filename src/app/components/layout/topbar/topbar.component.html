@@ -1,40 +1,41 @@
 <style>
   #sidebarCollapse:hover {
-      background-color: rgb(36, 157, 41) !important;
-      border-color: rgb(36, 157, 41) !important;
+    background-color: rgb(36, 157, 41) !important;
+    border-color: rgb(36, 157, 41) !important;
   }
 </style>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top" id="topbar">
   <div class="container-fluid d-flex justify-content-between">
-      <div>
-          <button type="button" id="sidebarCollapse" class="btn btn-primary"
-              style="background-color: rgb(36, 157, 41);border-color: rgb(36, 157, 41);">
-              <i class="fa fa-bars"></i>
-              <span class="sr-only">Toggle Menu</span>
-          </button>
-      </div>
-      <div>
-          <h6 class="m-0" style="text-align: center">
-              <img src="#" alt="ARTEC icon" style="max-width: 25%;">ARTEC <span
-                  style="color: #ee4266;">RH</span>
-          </h6>
-      </div>
-      <div>
-          <ul class="navbar-nav flex-nowrap ml-auto">
-              <li class="nav-item dropdown no-arrow">
-                  <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                          data-toggle="dropdown" href="#"><span
-                              class="d-none d-lg-inline mr-2 text-gray-600 small">Administrateur RH</span><img
-                              class="border rounded-circle img-profile"
-                              src="#"></a>
-                      <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
-                          <div class="dropdown-divider"></div><a class="dropdown-item"
-                              href="#"><i
-                                  class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Deconnexion</a>
-                      </div>
-                  </div>
-              </li>
-          </ul>
-      </div>
+    <div>
+      <button type="button" id="sidebarCollapse" class="btn btn-primary" style="
+          background-color: rgb(36, 157, 41);
+          border-color: rgb(36, 157, 41);
+        ">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <div>
+      <h6 class="m-0" style="text-align: center">
+        AUTO <span style="color: #ee4266">Xpert</span>
+      </h6>
+    </div>
+    <div>
+      <ul class="navbar-nav flex-nowrap ml-auto">
+        <li class="nav-item dropdown no-arrow">
+          <div class="nav-item dropdown no-arrow">
+            <a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#"><span
+                class="d-none d-lg-inline mr-2 text-gray-600 small">{{userName}}</span><img
+                class="border rounded-circle img-profile" src="#" /></a>
+            <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" (click)="logout()"><i
+                  class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Deconnexion</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

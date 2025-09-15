@@ -1,8 +1,5 @@
-<nav id="sidebar" style="background-color: black; height: 100%;" >
-  <a
-    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-    href="#"
-  >
+<nav id="sidebar" style="background-color: black; height: 100%;">
+  <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
     <div class="sidebar-brand-icon">
       <p></p>
     </div>
@@ -10,30 +7,45 @@
   <div class="p-4 pt-5">
     <ul class="list-unstyled components mb-5">
       <li>
-        <a class="nav-link" href="#"
-          ><i class="fa fa-home"></i><span> Tableau de bord</span>
+        <a class="nav-link" [routerLink]="['/dashboard']"><span> Accueil</span>
         </a>
       </li>
       <!-- TODO : Ajoute la class active quand l'url est celui du lien-->
-      <li>
-        <a
-          href="#congeSubmenu"
-          data-toggle="collapse"
-          aria-expanded="false"
-          class="dropdown-toggle"
-          ><i class="fas fa-suitcase"></i> Congé</a
-        >
+      <li *ngIf="userRole === 'user'">
+        <a href=" #congeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Service</a>
         <ul class="collapse list-unstyled" id="congeSubmenu">
           <li>
-            <a href="#">Solde de congé des employés</a>
+            <a [routerLink]="['/DemandeMeeting']">Demander un rendez-vous</a>
           </li>
+
           <li>
-            <a href="#">Liste congé</a>
-          </li>
-          <li>
-            <a href="#">Etat congé</a>
+            <a [routerLink]="['/service-list-client']">Détails du service</a>
           </li>
         </ul>
+      </li>
+      <li *ngIf="userRole === 'admin'">
+        <a class="nav-link" [routerLink]="['/create-mecanicien']"><span>Ajout d'un nouveau mécanicien</span>
+        </a>
+      </li>
+      <li *ngIf="userRole === 'admin'">
+        <a class="nav-link" [routerLink]="['/list-appointment-manager']"><span>Liste des demandes de rendez-vous</span>
+        </a>
+      </li>
+      <li *ngIf="userRole === 'admin'">
+        <a class="nav-link" href="#"><span>Liste des services</span>
+        </a>
+      </li>
+      <li *ngIf="userRole === 'admin'">
+        <a class="nav-link" href="#"><span>Facturation</span>
+        </a>
+      </li>
+      <li *ngIf="userRole === 'admin'">
+        <a class="nav-link" href="#"><span>Pièce</span>
+        </a>
+      </li>
+      <li *ngIf="userRole === 'mecanicien'">
+        <a class="nav-link" href="#"><span>Mes taches</span>
+        </a>
       </li>
     </ul>
   </div>
