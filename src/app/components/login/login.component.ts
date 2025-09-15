@@ -14,8 +14,8 @@ import { AuthService } from '../../services/auth.service'; // Import AuthService
 })
 export class LoginComponent implements OnInit {
   // TODO  : Changer les values
-  mail: string = 'mbints@gmail.com';
-  mdp: string = '2005';
+  mail: string = 'user@gmail.com';
+  mdp: string = '1234';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {} // Inject AuthService and Router
