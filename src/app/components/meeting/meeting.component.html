@@ -1,0 +1,47 @@
+<section class="contact-clean" style="background: rgb(248, 249, 252); display: flex; height: 100vh;">
+  <!-- Left side: Form -->
+  <div style="flex: 1; padding: 20px; overflow: hidden;">
+    <form (ngSubmit)="createAppointment()" style="border-radius: 34px" enctype="multipart/form-data">
+      <h2 class="text-center">Demander un rendez-vous</h2>
+      <div class="form-group">
+        <label for="objet">Date du rendez-vous</label>
+        <input class="form-control" type="date" name="date" [(ngModel)]="date" />
+      </div>
+      <div class="form-group">
+        <label for="objet">Détail</label>
+        <textarea class="form-control" name="details" [(ngModel)]="details"></textarea>
+      </div>
+      <div class="form-group" style="text-align: center">
+        <button class="btn btn-primary" type="submit">Demander le rendez-vous</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Right side: List of rendez-vous -->
+  <div style="flex: 1; padding: 20px; overflow-y: auto; background: #ffffff; border-left: 1px solid #ddd;">
+    <h2>Mes rendez-vous</h2>
+    <table *ngIf="appointments.length > 0; else noAppointments">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Détails</th>
+          <th>Statuts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appointment of appointments">
+          <td>{{ appointment.date | date:'EEEE dd MMMM yyyy' }}</td>
+          <td>{{ appointment.details }}</td>
+          <td
+            [ngStyle]="{ color: appointment.status === 'attente' ? 'blue' : appointment.status === 'confirmée' ? 'green' : 'red' }">
+            {{ appointment.status }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noAppointments>
+      <p>Aucun rendez-vous trouvé.</p>
+    </ng-template>
+
+  </div>
+</section>
