@@ -1,77 +1,45 @@
 import { RenderMode } from '@angular/ssr';
 import { Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LayoutComponent } from './components/layout/layout/layout.component'; // Import your layout component
+import { MeetingComponent } from './components/meeting/meeting.component';
+import { ServiceListClientComponent } from './components/service-list-client/service-list-client.component';
+import { CreateMecanicienComponent } from './components/create-mecanicien/create-mecanicien.component';
+import { ListAppointmentManagerComponent } from './components/list-appointment-manager/list-appointment-manager.component';
+import { CreateServiceAppointmentComponent } from './components/create-service-appointment/create-service-appointment.component';
+import { CreateServiceComponent } from './components/create-service/create-service.component';
+import { ListServiceManagerComponent } from './components/list-service-manager/list-service-manager.component';
 import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./components/login/login.component').then(
-        (m) => m.LoginComponent
-      ),
-  },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route
   {
     path: '',
-    component: LayoutComponent,
-    canActivate: [AuthGuard],
+    component: LayoutComponent, // Applies layout to all child routes
+    canActivate: [AuthGuard], // Applies layout to all child routes
     children: [
-      {
-        path: 'dashboard',
-        loadComponent: () =>
-          import('./components/dashboard/dashboard.component').then(
-            (m) => m.DashboardComponent
-          ),
-      },
-      {
-        path: 'DemandeMeeting',
-        loadComponent: () =>
-          import('./components/meeting/meeting.component').then(
-            (m) => m.MeetingComponent
-          ),
-      },
-      {
-        path: 'service-list-client',
-        loadComponent: () =>
-          import(
-            './components/service-list-client/service-list-client.component'
-          ).then((m) => m.ServiceListClientComponent),
-      },
-      {
-        path: 'create-mecanicien',
-        loadComponent: () =>
-          import(
-            './components/create-mecanicien/create-mecanicien.component'
-          ).then((m) => m.CreateMecanicienComponent),
-      },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'DemandeMeeting', component: MeetingComponent },
+      { path: 'service-list-client', component: ServiceListClientComponent },
+      { path: 'create-mecanicien', component: CreateMecanicienComponent },
       {
         path: 'list-appointment-manager',
-        loadComponent: () =>
-          import(
-            './components/list-appointment-manager/list-appointment-manager.component'
-          ).then((m) => m.ListAppointmentManagerComponent),
+        component: ListAppointmentManagerComponent,
       },
       {
         path: 'create-service-appointment',
-        loadComponent: () =>
-          import(
-            './components/create-service-appointment/create-service-appointment.component'
-          ).then((m) => m.CreateServiceAppointmentComponent),
+        component: CreateServiceAppointmentComponent,
       },
       {
         path: 'create-service/:appointment_id',
-        loadComponent: () =>
-          import('./components/create-service/create-service.component').then(
-            (m) => m.CreateServiceComponent
-          ),
+        component: CreateServiceComponent, // Pass a custom value
+        data: { renderMode: 'server'}
       },
       {
         path: 'list-service-manager',
-        loadComponent: () =>
-          import(
-            './components/list-service-manager/list-service-manager.component'
-          ).then((m) => m.ListServiceManagerComponent),
+        component: ListServiceManagerComponent, // Pass a custom value
       },
     ],
   },
