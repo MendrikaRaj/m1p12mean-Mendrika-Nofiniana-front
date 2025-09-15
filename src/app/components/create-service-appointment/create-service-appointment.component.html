@@ -1,0 +1,111 @@
+<div class="container">
+  <h2>Create Service Appointment</h2>
+
+  <!-- General Information Form -->
+  <form (ngSubmit)="createServiceAppointment()" #generalForm="ngForm">
+    <h3>General Information</h3>
+    <div class="form-group">
+      <label for="client_id">Client ID:</label>
+      <input type="text" id="client_id" class="form-control" [(ngModel)]="serviceData.client_id" name="client_id"
+        required />
+    </div>
+
+    <div class="form-group">
+      <label for="vehicule">Vehicule:</label>
+      <input type="text" id="vehicule" class="form-control" [(ngModel)]="serviceData.vehicule" name="vehicule"
+        required />
+    </div>
+
+    <div class="form-group">
+      <label for="date_debut_service">Start Date:</label>
+      <input type="date" id="date_debut_service" class="form-control" [(ngModel)]="serviceData.date_debut_service"
+        name="date_debut_service" required />
+    </div>
+
+    <div class="form-group">
+      <label for="date_fin_service">End Date:</label>
+      <input type="date" id="date_fin_service" class="form-control" [(ngModel)]="serviceData.date_fin_service"
+        name="date_fin_service" />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" class="form-control" [(ngModel)]="serviceData.description"
+        name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="prix_main_oeuvre">Labor Cost:</label>
+      <input type="number" id="prix_main_oeuvre" class="form-control" [(ngModel)]="serviceData.prix_main_oeuvre"
+        name="prix_main_oeuvre" required />
+    </div>
+
+    <div class="form-group">
+      <label for="frais_consultation">Consultation Fee:</label>
+      <input type="number" id="frais_consultation" class="form-control" [(ngModel)]="serviceData.frais_consultation"
+        name="frais_consultation" required />
+    </div>
+
+    <div class="form-group">
+      <label for="frais_deplacement">Travel Fee:</label>
+      <input type="number" id="frais_deplacement" class="form-control" [(ngModel)]="serviceData.frais_deplacement"
+        name="frais_deplacement" required />
+    </div>
+  </form>
+
+  <!-- Mecanicien Form -->
+  <form>
+    <h3>Mecaniciens</h3>
+    <div class="form-group">
+      <label for="mecanicien_id">Mecanicien IDs:</label>
+      <div *ngFor="let mecanicien of serviceData.mecanicien_id; let i = index">
+        <input type="text" class="form-control mb-2" [(ngModel)]="serviceData.mecanicien_id[i]"
+          name="mecanicien_id_{{ i }}" />
+      </div>
+      <!-- <button type="button" class="btn btn-secondary" (click)="serviceData.mecanicien_id.push('')">
+        Add Mecanicien
+      </button> -->
+    </div>
+  </form>
+
+  <!-- Pieces Form -->
+  <form>
+    <h3>Pieces</h3>
+    <div class="form-group">
+      <label>Pieces:</label>
+      <div *ngFor="let piece of serviceData.pieces; let i = index" class="mb-3">
+        <div class="form-group">
+          <label for="piece_id_{{ i }}">Piece ID:</label>
+          <input type="text" id="piece_id_{{ i }}" class="form-control" [(ngModel)]="piece.piece_id"
+            name="piece_id_{{ i }}" list="piecesList" required />
+          <!-- Datalist for autocomplete -->
+          <datalist id="piecesList">
+            <option *ngFor="let p of allPieces" [value]="p._id">{{ p.name }}</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label for="status_{{ i }}">Status:</label>
+          <input type="text" id="status_{{ i }}" class="form-control" [(ngModel)]="piece.status"
+            name="status_{{ i }}" />
+        </div>
+        <div class="form-group">
+          <label for="quantite_{{ i }}">Quantity:</label>
+          <input type="number" id="quantite_{{ i }}" class="form-control" [(ngModel)]="piece.quantite"
+            name="quantite_{{ i }}" required />
+        </div>
+        <button type="button" class="btn btn-danger" (click)="serviceData.pieces.splice(i, 1)">
+          Remove Piece
+        </button>
+      </div>
+      <!-- <button type="button" class="btn btn-secondary"
+        (click)="serviceData.pieces.push({ piece_id: '', date_ajout: new Date(), status: '', quantite: 0 })">
+        Add Piece
+      </button> -->
+    </div>
+  </form>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary mt-3" (click)="createServiceAppointment()">
+    Create Service
+  </button>
+</div>

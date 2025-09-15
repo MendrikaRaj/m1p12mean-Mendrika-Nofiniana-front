@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <h3 class="text-dark mb-4" style="text-align: center">Liste des demandes de rendez-vous</h3>
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+        <table class="table my-0" id="dataTable">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>date demander</th>
+              <th>detail</th>
+              <th>Numero</th>
+              <th>Status</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let appointment of appointments">
+              <td>{{ appointment.clientDetails?.nom + ' '+appointment.clientDetails?.prenom }}</td>
+              <td>{{ appointment.date | date:'EEEE dd MMMM yyyy' }}</td>
+              <td>{{ appointment.details }}</td>
+              <td>{{ appointment.clientDetails?.numero }}</td>
+              <td
+                [ngStyle]="{ color: appointment.status === 'attente' ? 'blue' : appointment.status === 'confirmée' ? 'green' : 'red' }">
+                {{ appointment.status }}
+              </td>
+              <td *ngIf="appointment.status === 'confirmée'">
+                <button class="btn btn-primary btn-sm" (click)="goToCreateService(appointment._id)">Créer un
+                  service</button>
+              </td>
+              <td *ngIf="appointment.status !== 'confirmée' && appointment.status !== 'annulée'">
+                <button class="btn btn-success btn-sm"
+                  (click)="updateStatusAppointment(appointment._id,'confirmée')">Confirmé<embed src="" type=""></button>
+              </td>
+              <td *ngIf="appointment.status !== 'confirmée' && appointment.status !== 'annulée'">
+                <button class="btn btn-danger btn-sm"
+                  (click)="updateStatusAppointment(appointment._id,'annulée')">Annulée</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
