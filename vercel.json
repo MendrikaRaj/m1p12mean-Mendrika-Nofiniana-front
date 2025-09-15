@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/create-service/:appointment_id",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
