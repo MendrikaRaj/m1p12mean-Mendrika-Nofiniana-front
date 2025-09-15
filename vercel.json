@@ -1,5 +1,6 @@
+// Example vercel.json configuration
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/create-service/:appointment_id", "destination": "/index.html" }
   ]
 }
