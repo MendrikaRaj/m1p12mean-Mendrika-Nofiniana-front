@@ -33,8 +33,7 @@ export const routes: Routes = [
       },
       {
         path: 'create-service/:appointment_id',
-        component: CreateServiceComponent, // Pass a custom value\
-        data: { renderMode: 'no-prerender' } // or 'no-prerender'
+        component: CreateServiceComponent, // Pass a custom value
       },
       {
         path: 'list-service-manager',
